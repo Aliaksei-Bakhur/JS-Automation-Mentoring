@@ -8,7 +8,7 @@ describe('home page scenarios', function() {
       browser.driver.manage().window().maximize();
       browser.get('http://localhost:7000/');
       browser.findElement(By.name('userName')).clear();
-      browser.findElement(By.name('userName')).sendKeys(creds.userName);
+      browser.findElement(By.id('userName')).sendKeys(creds.userName);
       browser.findElement(By.xpath('//input[@id="firstName"]')).clear();
       browser.findElement(By.xpath('//input[@id="firstName"]')).sendKeys(creds.firstName);
       browser.findElement(By.css('#lastName')).clear();
@@ -34,12 +34,8 @@ describe('home page scenarios', function() {
             return Promise.all(promises);
           })
           .then((arrayOfMenuItems) => {
-            var actualMenuItems = '';
-            arrayOfMenuItems.forEach(function(item) {
-                actualMenuItems += item + ', ';
-            })
-            const expectedMenuItems = 'Home, Search, My Orders, My Profile, Sign Out, ';
-            expect(actualMenuItems).toEqual(expectedMenuItems);
+            const expectedMenuItems = ['Home', 'Search', 'My Orders', 'My Profile', 'Sign Out'];
+            expect(expectedMenuItems).toEqual(arrayOfMenuItems);
           })
       });
     
@@ -64,6 +60,32 @@ describe('home page scenarios', function() {
           const expectedPageTitle = 'Search';
           expect(actualPageTitle).toEqual(expectedPageTitle);
         })
+    });
+
+    it('User can open New Campaign page from the Search page', function(){
+      browser.wait(EC.visibilityOf(element(By.xpath('.//div[contains(@class, "dropdown-menu_header")]'))),8000)
+      .then(() => {
+        browser.findElement(By.css('div[class*="dropdown-menu_header"]')).click();
+      })
+      .then(() => {
+        const myAccountMenuSelector = './/span[contains(@class, "menu_popoverContent")]';
+        browser.wait(EC.visibilityOf(element(By.xpath(myAccountMenuSelector))));
+        element(By.xpath(myAccountMenuSelector)).element(By.css('a[href="/search"]')).click();
+        browser.wait(EC.visibilityOf(element(By.css('h1[class*="header_root"]'))))
+      })
+      .then(() => {
+        browser.findElement(By.cssContainingText('[class*="button_root__primary"]','Add Campaign')).click();
+      })
+      .then(() => {
+        return browser.findElement(By.css('h1[class*="header_root"]'));    
+      })
+      .then((element) => {
+        return element.getText();
+      })
+      .then((actualPageTitle) => {
+        const expectedPageTitle = 'New Campaign';
+        expect(actualPageTitle).toEqual(expectedPageTitle);
+      })
     });
 
     it('User can navigate to the My Profile page from My Account left menu', function(){
