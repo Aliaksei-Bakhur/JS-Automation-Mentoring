@@ -6,6 +6,7 @@ var webdriver = require("selenium-webdriver"),
   assert = require('assert'),
   until = webdriver.until;
 var driver;
+var expect = require('chai').expect;
 
 describe('home page scenarios', function(){
   this.timeout(50000);
@@ -14,17 +15,18 @@ describe('home page scenarios', function(){
       .usingServer('http://localhost:4444/wd/hub')
       .withCapabilities(webdriver.Capabilities.chrome())
       .build();
-    driver.manage().timeouts().implicitlyWait(3000);
+    driver.manage().timeouts().implicitlyWait(8000);
     driver.manage().window().maximize();
     driver.get('http://localhost:7000/');
     driver.findElement(By.name('userName')).clear();
-    driver.findElement(By.name('userName')).sendKeys(creds.userName);
+    driver.findElement(By.id('userName')).sendKeys(creds.userName);
     driver.findElement(By.xpath('//input[@id="firstName"]')).clear();
     driver.findElement(By.xpath('//input[@id="firstName"]')).sendKeys(creds.firstName);
     driver.findElement(By.css('#lastName')).clear();
     driver.findElement(By.css('#lastName')).sendKeys(creds.lastName);
     driver.findElement(By.css('#email')).clear();
     driver.findElement(By.css('#email')).sendKeys(creds.email);
+    driver.sleep(2000);
     driver.findElement(By.xpath('//button[@type="submit"]')).click();
   });
   
@@ -48,12 +50,8 @@ describe('home page scenarios', function(){
         return Promise.all(promises);
       })
       .then((arrayOfMenuItems) => {
-        var actualMenuItems = '';
-        arrayOfMenuItems.forEach(function(item) {
-            actualMenuItems += item + ', ';
-        })
-        const expectedMenuItems = 'Home, Search, My Orders, My Profile, Sign Out, ';
-        assert.strictEqual(actualMenuItems, expectedMenuItems, 'Exp: ' + expectedMenuItems + '\n Act: ' + actualMenuItems);
+        const expectedMenuItems = ['Home', 'Search', 'My Orders', 'My Profile', 'Sign Out'];
+        expect(expectedMenuItems).to.eql(arrayOfMenuItems);
       })
   });
 
