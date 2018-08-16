@@ -27,8 +27,6 @@ describe('home page scenarios', function () {
     driver.findElement(By.css('#lastName')).sendKeys(creds.lastName);
     driver.findElement(By.css('#email')).clear();
     driver.actions().sendKeys(creds.email).sendKeys(webdriver.Key.ENTER).perform();
-    // driver.findElement(By.css('#email')).sendKeys(creds.email);
-    // driver.findElement(By.xpath('//button[@type="submit"]')).click();
     driver.sleep(2000);
   });
 
@@ -48,7 +46,6 @@ describe('home page scenarios', function () {
       })
       .then((menuHeader) => {
         driver.executeScript("arguments[0].click()", menuHeader);
-        //driver.findElement(By.css('div[class*="dropdown-menu_header"]')).click();
       })
       .then(() => {
         return driver.findElements(By.xpath('.//div[contains(@class, "firstMenuColumn")]/div[contains(@class,"item_root")]'));
@@ -69,7 +66,6 @@ describe('home page scenarios', function () {
   it('User can navigate to the Search page from My Account left menu', function () {
     driver.wait(until.elementIsVisible(driver.findElement(By.xpath('.//div[contains(@class, "dropdown-menu_header")]'))), 8000)
       .then(() => {
-        // driver.findElement(By.css('div[class*="dropdown-menu_header"]')).click();
         driver.actions().click(driver.findElement(By.css('div[class*="dropdown-menu_header"]'))).perform();
       })
       .then(() => {
