@@ -1,7 +1,8 @@
 /* global browser,expect,assert */
 const Page = require('../pageobjects/page');
+const Mixin = require('../pageobjects/modules/mixin');
 
-class MyOrders extends Page {
+class MyOrders extends Mixin(Page) {
   waitPageReady() {
     const checkObjects = {
       expectedItems: [this.pageName],

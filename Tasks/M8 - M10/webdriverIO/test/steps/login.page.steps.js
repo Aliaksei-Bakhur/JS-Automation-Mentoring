@@ -1,12 +1,13 @@
 /* global browser,expect,assert */
 import { defineSupportCode } from 'cucumber';
-import { saml } from '../pageobjects/saml.page';
-const creds = require("../config/creds");
-import { config } from '../config/suite.cucumber.conf';
+const creds = require('../config/creds');
+const { config } = require('../config/suite.cucumber.conf');
+const loginFactory = require('../helpers/loginFactory');
 
 defineSupportCode(({ Given, Then, When }) => {
-  When(/^I login to Portal$/, () => {
+  When(/^I login to Portal via saml-idp$/, () => {
     browser.url(config.baseUrl);
+    const saml = loginFactory('saml-idp');
     saml.waitPageReady();
     saml.userNameInput.setValue(creds.userName);
     saml.firstNameInput.setValue(creds.firstName);

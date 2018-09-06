@@ -8,4 +8,9 @@ defineSupportCode(({ Given, Then, When }) => {
     expect('My Orders').is.equal(myOrders.pageName.getText());
   });
 
+  Then(/^I expect page title to be ''$/, () => {
+    myOrders.waitPageReady();
+    expect('').is.equal(myOrders.getPageTitle());
+  });
+
 });

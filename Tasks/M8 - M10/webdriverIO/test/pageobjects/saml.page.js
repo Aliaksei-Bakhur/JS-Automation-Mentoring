@@ -34,4 +34,4 @@ class Saml extends Page {
   }
 }
 
-export const saml = new Saml();
+module.exports = new Saml();
