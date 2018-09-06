@@ -33,6 +33,6 @@ module.exports = function (grunt) {
     'clean:jsonResults',
     'clean:junitResults',
     'webdriver:tests',
-    'exec:createHtmlReportLocally',
+    // 'exec:createHtmlReportLocally',
   ]);
 };
