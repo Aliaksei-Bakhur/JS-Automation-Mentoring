@@ -3,7 +3,7 @@ Feature: 02 Outline scenario
   @feature: Login
   @story: Login via SAML
   Scenario: 01 User can login to system via SAML
-    Given I login to Portal via saml-idp
+    Given I login to Portal via "saml-idp"
     Then I expect to be on [Home] page
 
   @feature: Menu Bar Navigation
