@@ -1,5 +1,6 @@
 /* global browser,expect,assert */
 const Page = require('./page');
+const creds = require('../config/creds');
 
 const selectors = {
   userNameInput: '#userName',
@@ -32,6 +33,18 @@ class Saml extends Page {
     super.waitPageReady(checkObjects);
     return true;
   }
+
+  loginToPortal() {
+    this.findUrlByText('Local SAML-IdP').click();
+    this.waitPageReady();
+    this.userNameInput.setValue(creds.userName);
+    this.firstNameInput.setValue(creds.firstName);
+    this.lastNameInput.setValue(creds.lastName);
+    this.emailInput.setValue(creds.email);
+    this.roleSelect.selectByVisibleText(creds.role);
+    this.signInButton.click();
+  }
+
 }
 
 module.exports = new Saml();
