@@ -13,7 +13,7 @@ A) Mixin
 1. Added new feature file '03 Mixin use' which use steps with Mixin use (that last one).
 2. The step is from my.orders.steps.js and uses method 'getPageTitle()' inherited by myOrders class from Mixin.
 B) Factory
-1. Added loginFactory with implemented case of 'sam-idp' login.
-2. Saml-idp login then is used by Login step.
+1. Added loginFactory with implemented cases of 'sam-idp' and 'okta' logins.
+2. Both logins are used in the tests.
 
 Note: automated generation of Allure report now is disabled.
