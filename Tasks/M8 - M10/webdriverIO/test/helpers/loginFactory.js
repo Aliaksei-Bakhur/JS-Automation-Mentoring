@@ -1,4 +1,5 @@
 const saml = require('../pageobjects/saml.page');
+const okta = require('../pageobjects/okta.page');
 
 module.exports = (loginType) => {
   let loginObj;
@@ -8,7 +9,7 @@ module.exports = (loginType) => {
       break;
     }
     case 'okta': {
-      loginObj = undefined;
+      loginObj = okta;
       break;
     }
     default: {
