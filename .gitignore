@@ -1,0 +1,7 @@
+node_modules
+.idea
+report
+creds.js
+package-lock.json
+allure-report
+reports
