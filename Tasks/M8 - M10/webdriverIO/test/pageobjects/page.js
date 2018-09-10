@@ -1,4 +1,8 @@
 /* global browser,expect,assert */
+const selectors = {
+  findUrlByText: (text) => `.//a[text() = "${text}"]`
+}
+
 class Page {
   constructor() {
     this.title = 'My Page';
@@ -6,6 +10,8 @@ class Page {
 
   get loadingResultWithText() { return browser.elements('.//*[text()="Loading..."]').value; }
   get pageName() { return browser.element('.//h1[contains(@class, "header_root")]'); }
+
+  findUrlByText(text) { return browser.element(selectors.findUrlByText(text)); }
 
   open(path) {
     browser.url(`/${path}`);
