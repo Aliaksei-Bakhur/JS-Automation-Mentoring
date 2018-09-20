@@ -5,6 +5,7 @@ const selectors = {
   taskBar: '[class*="header_root"]',
   logoImage: '[class*="header_logo"]',
   menuByText: (text) => `//div[div[text()="${text}" and  contains(@class, "dropdown-menu_header")]]`,
+  myAccountDropDown: '[class*=dropdown-menu_header]',
   cartIcon: '[class*="header-menu_cartButton"]',
   cartCounter: '[class*="badge-counter_root"]',
   searchDropdown: '[class*="search-input_dropdown"]',
@@ -31,6 +32,7 @@ class MenuBarModule extends Page {
   get subMenu() { return browser.element(selectors.subMenu); }
   get subMenuColumns() { return browser.elements(selectors.subMenuColumns); }
   get subMenuItems() { return browser.elements(selectors.subMenuItems); }
+  get myAccountDropDown() { return browser.element(selectors.myActtountDropDown); }
   menuByText(text) { return browser.element(selectors.menuByText(text)); }
 
   waitPageReady() {

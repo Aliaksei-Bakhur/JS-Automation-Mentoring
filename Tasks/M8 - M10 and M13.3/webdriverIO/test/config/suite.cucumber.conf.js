@@ -1,9 +1,11 @@
 const defaultTimeoutInterval = process.env.DEBUG ? (60 * 60 * 500) : 90000;
+const path = require('path');
+const fs = require('fs');
 
 exports.config = {
 
   specs: [
-    './test/features/*.feature',
+    './test/features/01*.feature',
   ],
   // Patterns to exclude.
   exclude: [
@@ -197,6 +199,17 @@ exports.config = {
   // afterStep: function (stepResult) {
   //     //do your stuff
   // },
+  afterStep: (stepResult) => {
+    const dir = this.config.screenshotPath;
+    const fileName = path.join(dir, `${browser.scenarioNumber}.png`);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+    browser.saveScreenshot(fileName);
+    process.send({
+      event: 'step:end',
+    });
+  },
   //
   //
   // beforeFeature: function (feature) {
@@ -209,6 +222,13 @@ exports.config = {
   //
   beforeScenario: (scenario) => {
     browser.windowHandleMaximize();
+    process.send({
+      event: 'scenario:start',
+      name: scenario.name,
+    });
+    const featureNumber = scenario.feature.name.split(' ')[0];
+    const scenarioNumber = scenario.name.split(' ')[0];
+    browser.scenarioNumber = `${featureNumber}_${scenarioNumber}`;
   },
   // afterScenario: function (scenarioResult) {
   //     //do your stuff

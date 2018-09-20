@@ -17,3 +17,9 @@ B) Factory
 2. Both logins are used in the tests.
 
 Note: automated generation of Allure report now is disabled.
+
+13-3 Module updates:
+1. Added logging into separate file and console. File name has date stamp. For each test run all log files to be removed.
+2. Different log levels were used: populated info and debug types.
+3. Allure html report to appear after tests execution. Each test has screenshot attached.
+4. Test '04 User can see [My Account] menu' has step with highlighting 'My Account' menu. Please see attached screenshot for the test for proof.

@@ -1,0 +1,10 @@
+[2018-09-19T23:52:37.162] [INFO] combined - I login to Portal via okta
+[2018-09-19T23:53:01.788] [DEBUG] combined - Waiting for [Home] page to load
+[2018-09-19T23:53:09.160] [DEBUG] combined - [Home] page is loaded
+[2018-09-19T23:53:10.080] [INFO] combined - I check status of Menu Bar
+[2018-09-19T23:53:11.025] [INFO] combined - I check Logo is present in Menu Bar
+[2018-09-19T23:53:12.078] [INFO] combined - I highlight My Account menu in Menu Bar
+[2018-09-19T23:53:13.003] [INFO] combined - I check status of My Account menu
+[2018-09-19T23:53:14.034] [INFO] combined - I click on My Account menu
+[2018-09-19T23:53:15.024] [INFO] combined - I check My Account contains all expected submenu items in strict order for 1 column
+[2018-09-19T23:53:16.338] [INFO] combined - I check My Account contains all expected submenu items in strict order for 2 column

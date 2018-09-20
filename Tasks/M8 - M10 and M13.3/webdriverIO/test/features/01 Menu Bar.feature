@@ -19,6 +19,7 @@ Feature: 01 Menu Bar
   @feature: Menu Bar
   @story: My Account
   Scenario: 04 User can see [My Account] menu
+    And I highlight "My Account" menu in [Menu Bar]
     Then I expect "My Account" menu item is present in [Menu Bar]
 
   @feature: Menu Bar
@@ -45,3 +46,4 @@ Feature: 01 Menu Bar
       | Manage Roles          |
       | Manage Users          |
       | Manage SSO            |
+      | Manage Partners       |
